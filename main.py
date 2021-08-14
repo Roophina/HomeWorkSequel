@@ -11,6 +11,7 @@ from game_functions import (
     find_totem,
     validate_input_12,
 )
+from saving import Totem
 
 
 def game() -> None:
@@ -31,15 +32,12 @@ def game() -> None:
             arrow(username)
         elif "totem" in x:
             find_totem(username)
-    if username.hp <= 0 and username.totem:
-        print("Вы убиты, но есть тотем, хотите воспользоваться?")
-        t = input("1-да, 2-нет _")
-        t = validate_input_12(t)
-        if t == "1":
-            username.totem.load()
-            username.totem = None
-        else:
-            print("ПОРАЖЕНИЕ! Вы убиты, Игра окончена")
+        if username.hp <= 0 and username.totem:
+            print("Вы убиты, но есть тотем, хотите воспользоваться?")
+            t = input("1-да, 2-нет _")
+            t = validate_input_12(t)
+            if t == "1":
+                username = username.totem.load()
     if username.hp <= 0:
         print("ПОРАЖЕНИЕ! Вы убиты, Игра окончена")
     if username.monster_counter == 10:
