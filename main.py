@@ -11,7 +11,6 @@ from game_functions import (
     find_totem,
     validate_input_12,
 )
-from saving import Totem
 
 
 def game() -> None:
